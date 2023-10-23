@@ -1,0 +1,3576 @@
+<div id="section">
+  <div style="padding: 75px 0">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h5 class="pb-3 text-light mt-3">New Employee</h5>
+        </div>
+      </div>
+    </div>
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+      <div class="container p-5">
+        <div class="card mx-3 mt-n5 shadow-lg">
+          <div class="card-body">
+            <div *ngIf="step == 1">
+              <h4 class="card-title mb-3 text-primary text-uppercase">
+                Personal Information
+              </h4>
+
+              <div class="row">
+                <div class="col-sm-1">
+                  <div class="  ">
+                    <label for="">Prefix</label>
+                    <!-- <select name="namePrefix" class=" prefix form-control form-control-lg"
+                                    id="floatingTextInput1" formControlName="namePrefix" style="padding-top:12px ;">
+                                    <option selected disabled [value]="obj.namePrefix">Prefix.</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Miss">Miss</option>
+                                </select> -->
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="namePrefix"
+                      [value]="obj.namePrefix"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-sm-3">
+                  <div class="form-floating mb-3 firstName">
+                    <label for="floatingTextInput1">First Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="firstName"
+                      placeholder="First Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3 mdName">
+                    <label for="floatingTextInput1">middle Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="middleName"
+                      placeholder="middle Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="mb-3">
+                    <label for="floatingTextInput2">Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput2"
+                      formControlName="lastName"
+                      placeholder="Last Name"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Father's First Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="fathersFirstName"
+                      placeholder="Father's First Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Father's Middle Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="fathersMiddleName"
+                      placeholder="Father's Middle Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput2">Father's Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput2"
+                      formControlName="fatherLastName"
+                      placeholder="Father's Last Name"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Date Of Birth</label>
+                    <!-- <input type="Date" (change)="getAge($event)" min="" [max]="2023-12-12" -->
+                    <input
+                      type="Date"
+                      (change)="getAge($event)"
+                      min=""
+                      [max]="currentDate"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="dateOfBirth"
+                      placeholder="Date Of Birth"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Age </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      [(ngModel)]="employeeAge"
+                      formControlName="age"
+                      placeholder="Age"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Marital Status</label>
+                    <select
+                      name="cars"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="maritalStatus"
+                      style="padding-top: 12px"
+                    >
+                      <option selected disabled [value]="'Martial-Status'">
+                        Marital Status
+                      </option>
+                      <option value="Married">Married.</option>
+                      <option value="Single">Single.</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-1">
+                  <div class="form-floating mb-3">
+                    <label for="">Code</label>
+                    <select
+                      name="cars"
+                      id="cars"
+                      class="prefix form-control form-control-lg"
+                      formControlName="phoneCode"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px"
+                    >
+                      <option selected disabled [value]="obj.phoneCode">
+                        {{ obj.phoneCode }}
+                      </option>
+                      <option
+                        *ngFor="let Country of Countries"
+                        [value]="Country.phonecode"
+                      >
+                        <!-- {{Country.phonecode}} {{Country.name}} </option> -->
+                        {{ Country.phonecode }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-floating mb-3 firstName">
+                    <label for="floatingTextInput1">Phone Number</label>
+                    <input
+                      type="tel"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="personalContactNo"
+                      placeholder="Phone Number"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3 mdName">
+                    <label for="floatingTextInput1">Passport Size Photo</label>
+                    <input
+                      type="file"
+                      name="passportSizePhoto"
+                      (change)="uploadFile($event)"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder="Passport Size Photo"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput2">Email</label>
+                    <input
+                      type="email"
+                      class="form-control form-control-lg"
+                      formControlName="email"
+                      id="floatingTextInput2"
+                      placeholder="Email"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="citizenship">Citizenship</label>
+                    <select
+                      name="citizenship"
+                      id="citizenship"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      formControlName="citizenship"
+                    >
+                      <option selected disabled [value]="obj.citizenship">
+                        {{ obj.citizenship }}
+                      </option>
+
+                      <option
+                        *ngFor="let Country of Countries"
+                        [value]="Country.name"
+                      >
+                        {{ Country.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Passport Issuing</label>
+                    <select
+                      name="cars"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      formControlName="passportIssuingCountry"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.psDetail.passportIssuingCountry"
+                      >
+                        {{ obj.psDetail.passportIssuingCountry }}
+                      </option>
+
+                      <option
+                        *ngFor="let Country of Countries"
+                        [value]="Country.name"
+                      >
+                        {{ Country.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput2">Passport Number</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput2"
+                      formControlName="passportNumber"
+                      placeholder="Passport Number"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-2">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput2">Scanned Copy</label>
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput2"
+                      name="passportScannedCopy"
+                      (change)="uploadFile($event)"
+                      placeholder="Smith"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Passport Expiry Date</label>
+                    <input
+                      type="Date"
+                      class="form-control form-control-lg"
+                      formControlName="passportExpiryDate"
+                      id="floatingTextInput1"
+                      placeholder="John"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >ID proof by country residence
+                    </label>
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      (change)="uploadFile($event)"
+                      name="otherScannedIdProof"
+                      placeholder="John"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="bloodGroup">Blood Group</label>
+                    <select
+                      name="bloodGroup"
+                      id="bloodGroup"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="bloodGroup"
+                      style="padding-top: 12px"
+                    >
+                      <option value="Select the Blood Group">
+                        Blood Group
+                      </option>
+                      <option value="A+">A+</option>
+                      <option value="B+">B+</option>
+                      <option value="AB+">AB+</option>
+                      <option value="O+">O+</option>
+                      <option value="A-">A-</option>
+                      <option value="B-">B-</option>
+                      <option value="O-">O-</option>
+                      <option value="AB-">AB-</option>
+                    </select>
+                    <!-- <label for="floatingTextInput1"></label> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Country Of Permanent Residence</label
+                    >
+                    <textarea
+                      type="file"
+                      class="form-control form-control-lg"
+                      name="permanentResidenceCountry"
+                      formControlName="permanentResidenceCountry"
+                      (change)="uploadFile($event)"
+                      id="floatingTextInput1"
+                      placeholder="Country Of Permanent Residence"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Permanent Residence Address
+                    </label>
+                    <textarea
+                      type="file"
+                      class="form-control form-control-lg"
+                      name="permanentResidentialAddress"
+                      formControlName="permanentResidentialAddress"
+                      (change)="uploadFile($event)"
+                      id="floatingTextInput1"
+                      placeholder="Permanent Residence Address"
+                    ></textarea>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Hobbies </label>
+                    <textarea
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder="Hobbies"
+                      formControlName="hobbies"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="drivinglicense">Driving License of UAE</label>
+                    <select
+                      name="drivinglicense"
+                      id="drivinglicense"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      formControlName="drivinglicense"
+                      (change)="onSelect($event)"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.license.drivinglicense"
+                      >
+                        {{ obj.license.drivinglicense }}
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="drivinglicense">Type Of Lincense</label>
+                    <select
+                      name="licenseType"
+                      id="drivinglicense"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      formControlName="licenseType"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.license.licenseType"
+                      >
+                        {{ obj.license.licenseType }}
+                      </option>
+                      <option value="Two Whelers">Two Whelers</option>
+                      <option value="Four Whelers">Four Whelers</option>
+                      <option value="Heavy Vehicle">Heavy Vehicle</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Scanned Copy of License
+                    </label>
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1 "
+                      name="scannedCopyOfLincense"
+                      formControlName="scannedCopyOfLincense"
+                      (change)="uploadFile($event)"
+                      placeholder="John"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="ownvehicle">Personal Vehicle</label>
+                    <select
+                      name="ownvehicle"
+                      id="ownvehicle"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="ownvehicle"
+                      style="padding-top: 12px"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.license.ownvehicle"
+                      >
+                        {{ obj.license.ownvehicle }}
+                      </option>
+                      <option value="Yes">Yes .</option>
+                      <option value="No">No .</option>
+                    </select>
+                    <!-- <label for="floatingTextInput1"></label> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="step == 2">
+              <!-- Blood Relative start -->
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Blood Relative
+                  </h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-1">
+                  <div class="form-floating mb-3">
+                    <label for="">Prefix</label>
+                    <select
+                      name="cars"
+                      id="cars"
+                      class="prefix form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px"
+                      formControlName="relativenamePrefix"
+                    >
+                      <!-- <option value="">Select the option.</option> -->
+                      <option value="Mr">Mr.</option>
+                      <option value="Mrs">Mrs.</option>
+                      <option value="Miss">Miss.</option>
+                    </select>
+                    <!-- <label for="floatingTextInput1"></label> -->
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-floating mb-3 firstName">
+                    <label for="floatingTextInput1">First Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="RFirstname"
+                      placeholder="First Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3 mdName">
+                    <label for="floatingTextInput1">Middle Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="Rmiddlename"
+                      placeholder="Middle Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput2">Last Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput2"
+                      formControlName="Rlastname"
+                      placeholder="Last Name"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput2">Relationship</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput2"
+                      formControlName="relationship"
+                      placeholder="Relationship"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                  <div class="form-floating mb-3 BloodCode">
+                    <label for="">Code</label>
+                    <select
+                      name="RphoneCode"
+                      id="cars"
+                      class="prefix form-control form-control-lg"
+                      formControlName="RphoneCode"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      [value]="obj.relative.rphoneCode"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.relative.rphoneCode"
+                      >
+                        {{ obj.relative.rphoneCode }}
+                      </option>
+                      <option
+                        *ngFor="let Country of Countries"
+                        [value]="Country.phonecode"
+                      >
+                        <!-- {{Country.phonecode}} {{Country.name}} -->
+                        {{ Country.phonecode }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-floating mb-3 firstName BloodNO">
+                    <label for="floatingTextInput1">Phone Number</label>
+                    <input
+                      type="tel"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="Rcontactno"
+                      placeholder="Phone Number"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3 bloodAdd">
+                    <label for="floatingTextInput1"
+                      >Permanent Residence Address</label
+                    >
+                    <textarea
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="Raddress"
+                      placeholder="Permanent Residence Address"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Scanned Copy Address</label
+                    >
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      name="ScannedCopyOfRealtiveAddress"
+                      placeholder=""
+                      [value]="obj.relative.raddressproof"
+                      (change)="uploadFile($event)"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Scanned Copy Of ID </label>
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      name="ScannedCopyOfRealtiveId"
+                      [value]="obj.relative.relativeid"
+                      (change)="uploadFile($event)"
+                    />
+                  </div>
+                </div>
+                <!-- <div class="col-md-4"> -->
+                <!-- <button type="submit" class="btn btn-lg w-75 h-100   h-75 text-light pbtn" >
+                        <h3>Next</h3>
+                    </button> -->
+                <!-- </div> -->
+              </div>
+            </div>
+            <div *ngIf="step == 3">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Visa Details
+                  </h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Whether Worked in UAE</label>
+                    <select
+                      name="workedInUAE"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="workedInUAE"
+                      style="padding-top: 12px"
+                      (change)="onSelect($event)"
+                      [value]="obj.workedInUAE"
+                    >
+                      <option selected disabled [value]="obj.workedInUAE">
+                        {{ obj.workedInUAE }}
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                    <!-- <label for="floatingTextInput1"></label> -->
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['workedInUAE'].value=='Yes'"> -->
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Old Emirates Id </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      name="EmiratesID"
+                      formControlName="EmiratesID"
+                      placeholder="Old Emirates Id "
+                      [value]="obj.emiratesID"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Type Of Visa </label>
+                    <select
+                      name="VisaType"
+                      (change)="onSelect($event)"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="VisaType"
+                      [value]="obj.visainfo.visaType"
+                      style="padding-top: 12px"
+                    >
+                      <option selected disabled [value]="obj.visainfo.visaType">
+                        {{ obj.visainfo.visaType }}
+                      </option>
+                      <option value="Visit Visa">Visit Visa</option>
+                      <option value="Work Visa">Worked Visa</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Emirates ID </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="workVisaEmirateId"
+                      placeholder="Emirates ID"
+                      [value]="obj.emiratesID"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Categories Of Visa </label>
+                    <select
+                      name="categoryOfVisa"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="categoryOfVisa"
+                      style="padding-top: 12px"
+                      [value]="obj.visainfo.categoryOfVisa"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.visainfo.categoryOfVisa"
+                      >
+                        {{ obj.visainfo.categoryOfVisa }}
+                      </option>
+                      <option value="Own Work Visa">Own Work Visa .</option>
+                      <option value="SI Global Visa">SI Global Visa .</option>
+                    </select>
+                    <!-- <label for="floatingTextInput1"></label> -->
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Visa issuing company</label>
+                    <select
+                      name="siGlobalWorkVisaCompany"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      formControlName="siGlobalWorkVisaCompany"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px"
+                      [value]="obj.visainfo.siGlobalWorkVisaCompany"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.visainfo.siGlobalWorkVisaCompany"
+                      >
+                        {{ obj.visainfo.siGlobalWorkVisaCompany }}
+                      </option>
+                      <option value="SI Food Stuff Packing Industry LLC">
+                        SI Food Stuff Packing Industry LLC .
+                      </option>
+                      <option value="SI Global General Trading LLC">
+                        SI Global General Trading LLC
+                      </option>
+                      <option value="SI Global Commodities DMCC">
+                        SI Global Commodities DMCC
+                      </option>
+                      <option
+                        value="SI Global Spices And Grinding Industry LLC"
+                      >
+                        SI Global Spices And Grinding Industry LLC
+                      </option>
+                    </select>
+                    <!-- <label for="floatingTextInput1"></label> -->
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Visa Issue Date . </label>
+                    <input
+                      type="date"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="visaIssueyDate"
+                      placeholder=""
+                      [value]="obj.visainfo.visaIssueyDate"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Visa Expiry Date </label>
+                    <input
+                      type="date"
+                      class="form-control form-control-lg"
+                      formControlName="visaExpiryDate"
+                      id="floatingTextInput1"
+                      placeholder=""
+                      [min]="currentDate"
+                      [value]="obj.visainfo.visaExpiryDate"
+                    />
+                    <!-- <p>{{minDate | date: "MM/dd/yy"}}</p> -->
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Degree Attestation</label>
+                    <select
+                      name="cars"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="DegreeAttestation"
+                      style="padding-top: 12px"
+                      [value]="obj.degreeAttestation"
+                    >
+                      <option selected disabled [value]="obj.degreeAttestation">
+                        {{ obj.degreeAttestation }}
+                      </option>
+                      <option value="Done">Done</option>
+                      <option value="Not Done">Not Done</option>
+                    </select>
+                    <!-- <label for="floatingTextInput1"></label> -->
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Visa Scanned Copy Of ID
+                    </label>
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      name="VisaScannedCopyOfID"
+                      [value]="obj.visainfo.visaDocs"
+                      (change)="uploadFile($event)"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="step == 4">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Education Qualification
+                  </h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6 class="card-title mb-3 text-primary text-uppercase">
+                      Secondary Qualification
+                    </h6>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Secondary Issuing Authority
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="secondaryIssuingAuthority"
+                      placeholder="Secondary Issuing Authority"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Percentage Or Grade
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="secondarymarksOrGrade"
+                      placeholder="Secondary Percentage"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3 educaYear">
+                    <label for="floatingTextInput1"> Year </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder="Year"
+                      formControlName="secondaryyear"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3 educaScan">
+                    <label for="floatingTextInput1"> Scanned Copy </label>
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder=""
+                      name="ScannedCopyOfSecondary"
+                      (change)="uploadFile($event)"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="row">
+                  <div class="col-md-12">
+                    <h6 class="card-title mb-3 text-primary text-uppercase">
+                      Senior Secondary Qualification
+                    </h6>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Senior Secondary Issuing Authority
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="seniorSecondaryIssuingAuthority"
+                      placeholder="Senior Secondary Issuing Authority"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Senior Secondary Percentage Or Grade
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder="Senior Secondary Percentage"
+                      formControlName="seniorSecondaryMarksOrGrade"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3 educaScan">
+                    <label for="floatingTextInput1">
+                      Scanned Copy Of Senior Secondary
+                    </label>
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder="John"
+                      name="ScannedCopyOfSeniorSecondary"
+                      (change)="uploadFile($event)"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3 educaYear">
+                    <label for="floatingTextInput1"> Year </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder="Year"
+                      formControlName="seniorSecondaryYear"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h6 class="card-title mb-3 text-primary text-uppercase">
+                    Graduation Qualification
+                  </h6>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Graduation Issuing Authority
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="Graduation Issuing Authority"
+                      formControlName="graduationIssuingAuthority"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Graduation Percentage
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="Graduation Percentage "
+                      formControlName="graduationMarksOrGrade"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3 educaYear">
+                    <label for="floatingTextInput1"> Year</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="Year"
+                      formControlName="graduationYear"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3 educaScan">
+                    <label for="floatingTextInput1"> Scanned Copy</label>
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="John"
+                      name="ScannedCopyOfGraduation"
+                      (change)="uploadFile($event)"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h6 class="card-title mb-3 text-primary text-uppercase">
+                    Post Graduation Qualification
+                  </h6>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Post Graduation Issuing Authority</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="Post Graduation Issuing Authority"
+                      formControlName="postGraduationIssuingAuthority"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Post Graduation Percentage Or Grade
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="John"
+                      formControlName="postGraduationMarksOrGrade"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3 educaScan">
+                    <label for="floatingTextInput1">
+                      Scanned Copy Of Post Graduation</label
+                    >
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder=""
+                      name="ScannedCopyOfPostGraduation"
+                      (change)="uploadFile($event)"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3 educaYear">
+                    <label for="floatingTextInput1"> Year</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="Year"
+                      formControlName="postGraduationYear"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="step == 5">
+              <div class="row">
+                <div class="col-md-12">
+                  <h6 class="card-title mb-3 text-primary text-uppercase">
+                    Diploma Qualification
+                  </h6>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Diploma Issuing Authority
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      formControlName="diplomaIssuingAuthority"
+                      placeholder="Diploma Issuing Authority "
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Diploma Percentage </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="Diploma Percentage"
+                      formControlName="diplomaMarksOrGrade"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3 educaScan">
+                    <label for="floatingTextInput1">
+                      Scanned Copy Of Diploma</label
+                    >
+                    <input
+                      type="file"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder=""
+                      name="ScannedCopyOfDiploma"
+                      (change)="uploadFile($event)"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3 educaYear">
+                    <label for="floatingTextInput1"> Year</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      placeholder="Year"
+                      formControlName="diplomaYear"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Other Education
+                  </h4>
+                </div>
+              </div>
+              <div *ngFor="let data of obj.othersQualifications">
+              <div formArrayName="othersQualifications">
+                <div>
+<!--                   
+                    let fieldGroup of othersQualifications.controls;
+                    let i = index
+                  
+                  [formGroupName]="i" -->
+                
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <label for="floatingTextInput1">Qualification </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          formControlName="others"
+                          placeholder="Qualification"
+                          [value]="data.others"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <label for="floatingTextInput1">
+                          Issuing Authority
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          formControlName="othersIssuingAuthority"
+                          placeholder=" Issuing Authority"
+                          [value]="data.othersIssuingAuthority"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <label for="floatingTextInput1">
+                          Other Percentage Or Grade
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          placeholder="Other Percentage"
+                          formControlName="othersMarksOrGrade"
+                          [value]="data.othersMarksOrGrade"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3 educaYear">
+                        <label for="floatingTextInput1"> Year</label>
+                        <input
+                          type="text"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          placeholder="Year"
+                          formControlName="othersYear"
+                          [value]="data.othersYear"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3 educaScan">
+                        <label for="floatingTextInput1"> Scanned Copy </label>
+                        <input
+                          type="file"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          placeholder=""
+                          name="ScannedCopyOfOther"
+                          (change)="onFileSelected($event, i)"
+                        />
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+              
+
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="text-primary">Professional Qualification</h4>
+                </div>
+              </div>
+              <div *ngFor="let data of obj.professionalQualifications">
+              <div formArrayName="professionalQualifications">
+                <div>
+                  <!-- *ngFor="
+                    let fieldGroupForPro of professionalQualifications.controls;
+                    let i = index
+                  "
+                  [formGroupName]="i" -->
+                
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <label for="floatingTextInput1"> Qualification </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          formControlName="qualification"
+                          placeholder="Qualification"
+                          [value]="data.qualification"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <label for="floatingTextInput1">
+                          Issuing Authority
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          formControlName="issuingAuthority"
+                          placeholder="Issuing Authority"
+                          [value]="data.issuingAuthority"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <label for="">Grading System</label>
+                        <select
+                          name="gradingSystem"
+                          id="cars"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          formControlName="gradingSystem"
+                          style="padding-top: 12px"
+                          
+                          [value]="data.gradingSystem"
+                        >
+                          <!-- <option selected disabled [value]="'Grading System'">Grading System.</option> -->
+                          <option value="Percentage">Percentage.</option>
+                          <option value="CGPA">CGPA.</option>
+                          <option value="Grading">Grading.</option>
+                        </select>
+                        <!-- <label for="floatingTextInput1"></label> -->
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <label for="floatingTextInput1">
+                          Percentage Or Grade
+                        </label>
+                        <input
+                          type="text"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          formControlName="grade"
+                          placeholder=""
+                          [value]="data.grade"
+                          
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3 educaYear">
+                        <label for="floatingTextInput1"> Year</label>
+                        <input
+                          type="text"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          placeholder="Year"
+                          formControlName="yearOfQualification"
+                          [value]="data.yearOfQualification"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3 educaScan">
+                        <label for="floatingTextInput1"> Scanned Copy </label>
+                        <input
+                          type="file"
+                          class="form-control form-control-lg"
+                          name="ScannedCopyOfCourseCompleted"
+                          (change)="onFileSelected($event, i)"
+                          id="floatingTextInput1"
+                          placeholder=""
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  
+                </div>
+              </div>
+            </div>
+              
+            </div>
+
+            <div *ngIf="step == 6">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Previous Employer Details
+                  </h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Company Name </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      formControlName="companyName"
+                      id="floatingTextInput1"
+                      placeholder="Company Name "
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Address </label>
+                    <textarea
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="companyAddress"
+                      placeholder="Address"
+                    ></textarea>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Designation </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      formControlName="designation"
+                      id="floatingTextInput1"
+                      placeholder="Designation"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Date From </label>
+                    <input
+                      type="date"
+                      class="form-control form-control-lg"
+                      formControlName="dateFrom"
+                      id="floatingTextInput1"
+                      placeholder=""
+                      [value]="obj.oldEmployee[0].dateFrom"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Date Up To </label>
+                    <input
+                      type="date"
+                      class="form-control form-control-lg"
+                      formControlName="dateTo"
+                      id="floatingTextInput1"
+                      placeholder=""
+                      [value]="obj.oldEmployee[0].dateTo"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Previous Manager Name
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      formControlName="previousManagerName"
+                      id="floatingTextInput1"
+                      placeholder="Previous Manager Name "
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-sm-1">
+                  <div class="form-floating mb-3 BloodCode">
+                    <label for="">Code</label>
+                    <select
+                      name="previousManagerPhoneCode"
+                      id="cars"
+                      class="prefix form-control form-control-lg"
+                      formControlName="previousManagerPhoneCode"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                    >
+                      <option selected disabled [value]="'Code'">Code</option>
+                      <option
+                        *ngFor="let Country of Countries"
+                        [value]="Country.phonecode"
+                      >
+                        {{ Country.phonecode }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-floating mb-3 firstName BloodNO">
+                    <label for="floatingTextInput1">Manager Number</label>
+                    <input
+                      type="tel"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="previousManagerContact"
+                      placeholder="Manager Number"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Previous HR Name </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="previousHRName"
+                      placeholder="Previous HR Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-sm-1">
+                  <div class="form-floating mb-3 BloodCode">
+                    <label for="">Code</label>
+                    <select
+                      name="previousHRPhoneCode"
+                      id="cars"
+                      class="prefix form-control form-control-lg"
+                      formControlName="previousHRPhoneCode"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                    >
+                      <option selected disabled [value]="'Code'">Code</option>
+                      <option
+                        *ngFor="let Country of Countries"
+                        [value]="Country.phonecode"
+                      >
+                        {{ Country.phonecode }} {{ Country.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-floating mb-3 firstName BloodNO">
+                    <label for="floatingTextInput1">Hr Number</label>
+                    <input
+                      type="tel"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="previousHRContact"
+                      placeholder="Hr Number"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Last Withdrawn Salary
+                    </label>
+                    <input
+                      type="text"
+                      formControlName="lastWithdrawnSalary"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder="Last Withdrawn Salary"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"
+                      >Scan Copy Of Pay Slip
+                    </label>
+                    <input
+                      type="file"
+                      name="SalaryScannedCopy"
+                      (change)="uploadFile($event)"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Description</label>
+                    <input
+                      type="text"
+                      formControlName="description"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder="Description"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <!-- <div class="col-md-4">
+                            <div class="form-floating mb-3 ">
+                                <label for="floatingTextInput1">Achievement And Rewards </label>
+                                <input type="text" formControlName="achievementsRewards"
+                                    class="form-control form-control-lg" id="floatingTextInput1"
+                                    placeholder="Achievement And Rewards">
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-4">
+                            <div class="form-floating mb-3 ">
+                                <label for="floatingTextInput1">Scan Copy Of Achivements </label>
+                                <input type="file" name="ScanCopyOfAchivements" (change)="uploadFile($event)"
+                                    class="form-control form-control-lg" id="floatingTextInput1" placeholder="">
+                            </div>
+
+
+                        </div> -->
+
+                <!-- <div class="col-md-4">
+                            <label for="">Add Field</label>
+                            <input type="button" value="Add Field" (click)="addempAchievementsField()"
+                                class="form-control addprofessionalQualificationsField">
+                        </div> -->
+              </div>
+              <div formArrayName="empAchievements">
+                <div
+                  *ngFor="
+                    let fieldGroupForempAchievements of empAchievements.controls;
+                    let i = index
+                  "
+                  [formGroupName]="i"
+                >
+                  <div class="row">
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <label for="floatingTextInput1"
+                          >Achievement And Rewards
+                        </label>
+                        <input
+                          type="text"
+                          formControlName="achievementRewardsName"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          placeholder="Achievement And Rewards"
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-floating mb-3">
+                        <label for="floatingTextInput1"
+                          >Scan Copy Of Achivements
+                        </label>
+                        <input
+                          type="file"
+                          name="ScanCopyOfAchivements"
+                          (change)="onFileSelected($event, i)"
+                          class="form-control form-control-lg"
+                          id="floatingTextInput1"
+                          placeholder=""
+                        />
+                      </div>
+                    </div>
+                    <div class="col-md-4" style="margin-top: 30px">
+                      <input
+                        type="button"
+                        value="Remove Field"
+                        (click)="removeempAchievementsField(i)"
+                        class="form-control"
+                      />
+                      <!-- <button type="button" (click)="removeField(i)">Remove Field</button> -->
+                    </div>
+                    .
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="">Add Field</label>
+                  <input
+                    type="button"
+                    value="Add Field"
+                    (click)="addempAchievementsField()"
+                    class="form-control addprofessionalQualificationsField"
+                  />
+                </div>
+              </div>
+            </div>
+            <div *ngIf="step == 7">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Background Check
+                  </h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Background Check</label>
+                    <select
+                      name="status"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      formControlName="status"
+                      [value]="obj.bgcheck.status"
+                    >
+                      <option selected disabled [value]="obj.bgcheck.status">
+                        {{ obj.bgcheck.status }}
+                      </option>
+                      <option value="Done">Done</option>
+                      <option value="Pending">Pending</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['status'].value == 'Done'"
+                  >
+                    <label for="">Checked By</label>
+                    <select
+                      name="doneBy"
+                      id="cars"
+                      formControlName="doneBy"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      [value]="obj.bgcheck.doneBy"
+                    >
+                      <option selected disabled [value]="obj.bgcheck.doneBy">
+                        {{ obj.bgcheck.doneBy }}
+                      </option>
+                      <option value="Internal">Internal</option>
+                      <option value="External">External</option>
+                    </select>
+                  </div>
+                </div>
+                <div
+                  class="col-md-4"
+                  *ngIf="getPostFormControls['status'].value == 'Done'"
+                >
+                  <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['doneBy'].value=='Internal'"> -->
+                  <div class="form-floating mb-3">
+                    <!-- <div class="form-floating mb-3" > -->
+                    <label for="floatingTextInput1">
+                      Name the Concerned Manager
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="internalConcernedManager"
+                      placeholder="Name the Concerned Manager"
+                      [value]="obj.bgcheck.internalConcernedManager"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div
+                  class="col-md-4"
+                  *ngIf="getPostFormControls['status'].value == 'Done'"
+                >
+                  <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['doneBy'].value=='External'"> -->
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['doneBy'].value == 'External'"
+                  >
+                    <label for="floatingTextInput1">
+                      Name the Concerned Person
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder="Name the Concerned Person"
+                      formControlName="externalConcernedPerson"
+                      [value]="obj.bgcheck.externalName"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-md-4"
+                  *ngIf="getPostFormControls['status'].value == 'Done'"
+                >
+                  <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['doneBy'].value=='External'"> -->
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['doneBy'].value == 'External'"
+                  >
+                    <label for="floatingTextInput1"> Post </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder="Post"
+                      formControlName="externalPost"
+                      [value]="obj.bgcheck.externalPost"
+                    />
+                  </div>
+                </div>
+                <div
+                  class="col-md-4"
+                  *ngIf="getPostFormControls['status'].value == 'Done'"
+                >
+                  <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['doneBy'].value=='External'"> -->
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['doneBy'].value == 'External'"
+                  >
+                    <label for="floatingTextInput1"> Company Name </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      placeholder="Company Name "
+                      formControlName="externalCompanyName"
+                      [value]="obj.bgcheck.externalCompanyName"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div
+                  class="col-sm-1"
+                  *ngIf="getPostFormControls['status'].value == 'Done'"
+                >
+                  <div
+                    class="form-floating mb-3 BloodCode"
+                    *ngIf="getPostFormControls['doneBy'].value == 'External'"
+                  >
+                    <label for="">Code</label>
+                    <select
+                      name="externalPhoneCode"
+                      id="cars"
+                      class="prefix form-control form-control-lg"
+                      formControlName="externalPhoneCode"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      [value]="obj.bgcheck.externalPhoneCode"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.bgcheck.externalPhoneCode"
+                      >
+                        {{ obj.bgcheck.externalPhoneCode }}
+                      </option>
+                      <option
+                        *ngFor="let Country of Countries"
+                        [value]="Country.phonecode"
+                        style="word-spacing: 30px"
+                      >
+                        {{ Country.phonecode }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div
+                  class="col-sm-3"
+                  *ngIf="getPostFormControls['status'].value == 'Done'"
+                >
+                  <div
+                    class="form-floating mb-3 firstName BloodNO"
+                    *ngIf="getPostFormControls['doneBy'].value == 'External'"
+                  >
+                    <label for="floatingTextInput1">Hr Number</label>
+                    <input
+                      type="number"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="externalPhoneNo"
+                      placeholder="Hr Number"
+                      [value]="obj.bgcheck.externalPhoneNo"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['status'].value == 'Pending'"
+                  >
+                    <label for="">Approved By Manager</label>
+                    <select
+                      name="managerApproval"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      formControlName="managerApproval"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      [value]="obj.bgcheck.managerApproval"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.bgcheck.managerApproval"
+                      >
+                        {{ obj.bgcheck.managerApproval }}
+                      </option>
+                      <option value="Approved">Approved</option>
+                      <option value="Not Approved">Not Approved</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['status'].value == 'Pending'"
+                  >
+                    <label for="floatingTextInput1">
+                      Name Of Approving Manager
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      name="managerName"
+                      formControlName="managerName"
+                      [value]="obj.bgcheck.managerName"
+                      placeholder="Name Of Approving Manager"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['status'].value == 'Pending'"
+                  >
+                    <label for="floatingTextInput1"> Remarks </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="remark"
+                      name="remark"
+                      placeholder="Remarks"
+                      [value]="obj.bgcheck.remark"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Document To Be Verified
+                  </h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="previousDesignationAndResponsibilityVerified"
+                        [value]="
+                          obj.bgcheck
+                            .previousDesignationAndResponsibilityVerified
+                        "
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Previous designation Or Responsiblities
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        formControlName="idProofDocumentVerified"
+                        type="checkbox"
+                        [value]="obj.bgcheck.idProofDocumentVerified"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Id Proof Document Verified
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        formControlName="educationalQualificationVerified"
+                        type="checkbox"
+                        [value]="obj.bgcheck.educationalQualificationVerified"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Education Qualifications
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        [value]="obj.bgcheck.previousEmploymentStatusVerified"
+                        formControlName="previousEmploymentStatusVerified"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Previous Employee Status
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        formControlName="addressVerified"
+                        type="checkbox"
+                        [value]="obj.bgcheck.addressVerified"
+                        id="flexCheckDefault"
+                      />
+                      <!-- [value]="'Yes'" id="flexCheckDefault"> -->
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Address
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Criminal Record
+                  </h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Criminal</label>
+                    <select
+                      name="criminalRecords"
+                      id="cars"
+                      formControlName="criminalRecords"
+                      class="form-control form-control-lg"
+                      [value]="obj.bgcheck.criminalRecords"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.bgcheck.criminalRecords"
+                      >
+                        {{ obj.bgcheck.criminalRecords }}
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <!-- <div class="form-floating mb-3" *ngIf="getPostFormControls['criminalRecords'].value=='Yes'"> -->
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="
+                      getPostFormControls['criminalRecords'].value == 'Yes'
+                    "
+                  >
+                    <label for="floatingTextInput1"> Record Sheet </label>
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="RecordSheet"
+                      [value]="obj.bgcheck.recordsheet"
+                      (change)="uploadFile($event)"
+                      name="RecordSheet"
+                      placeholder="Record Sheet"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="
+                      getPostFormControls['criminalRecords'].value == 'Yes'
+                    "
+                  >
+                    <label for="">Punishment For Imprisonment</label>
+                    <select
+                      name="punishmentForImprisonmentApproval"
+                      (change)="onSelect($event)"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      [value]="obj.bgcheck.punishmentForImprisonmentApproval"
+                      formControlName="punishmentForImprisonmentApproval"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.bgcheck.punishmentForImprisonmentApproval"
+                      >
+                        {{ obj.bgcheck.punishmentForImprisonmentApproval }}
+                      </option>
+                      <option value="Yes">Yes .</option>
+                      <option value="No">No .</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="
+                      getPostFormControls['criminalRecords'].value == 'Yes'
+                    "
+                  >
+                    <label for="">Aprroved By Authority </label>
+                    <select
+                      name="approvalsheet"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      formControlName="approvalsheet"
+                      [value]="obj.bgcheck.criminalRecords"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.bgcheck.criminalRecords"
+                      >
+                        {{ obj.bgcheck.criminalRecords }}
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="getPostFormControls['criminalRecords'].value == 'No'"
+                  >
+                    <label for="floatingTextInput1"> Declaration</label>
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      (change)="uploadFile($event)"
+                      name="Declaration"
+                      [value]="obj.bgcheck.declarationRequired"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div *ngIf="step == 8">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Training Details's
+                  </h4>
+                </div>
+              </div>
+
+              <div class="row mt-2">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Training Type </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      formControlName="trainingType"
+                      id="floatingTextInput1"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Training Source</label>
+                    <select
+                      name="inHouseOutsource"
+                      id="cars"
+                      formControlName="inHouseOutsource"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      (change)="onSelect($event)"
+                      [value]="obj.training[0].inHouseOutsource"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.training[0].inHouseOutsource"
+                      >
+                        {{ obj.training[0].inHouseOutsource }}
+                      </option>
+                      <option value="InHouse">In House</option>
+                      <option value="OutSource">OutSource</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Training Details</label>
+                    <select
+                      name="paidUnpaid"
+                      id="cars"
+                      formControlName="paidUnpaid"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      (change)="onSelect($event)"
+                      [value]="obj.training[0].paidUnpaid"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.training[0].paidUnpaid"
+                      >
+                        {{ obj.training[0].paidUnpaid }}
+                      </option>
+                      <option value="Paid">Paid .</option>
+                      <option value="Unpaid">Unpaid.</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Certificate Uploaded For Outsource</label
+                    >
+                    <input
+                      type="file"
+                      formControlName="CertificateUploadedForOutsource"
+                      class="form-control form-control-lg"
+                      name="CertificateUploadedForOutsource"
+                      (change)="uploadFile($event)"
+                      id="floatingTextInput1"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Certificate Uploaded For Paid</label
+                    >
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      formControlName="PaidTrainingDocumentProof"
+                      name="PaidTrainingDocumentProof"
+                      (change)="uploadFile($event)"
+                      id="floatingTextInput1"
+                      placeholder=" Certificate Uploaded For Paid"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Training Start Date
+                    </label>
+                    <input
+                      type="date"
+                      class="form-control form-control-lg"
+                      formControlName="trainingStartDate"
+                      id="floatingTextInput1"
+                      placeholder="John"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Training End Date </label>
+                    <input
+                      type="date"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="trainingEndDate"
+                      placeholder=""
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+
+                <div class="col-md-4"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h6 class="card-title mb-3 text-primary text-uppercase">
+                    Trainer's Details
+                  </h6>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Trainer Name </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="trainerName"
+                      placeholder="Trainer Name"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Post </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="trainerPost"
+                      placeholder="Post"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Departnment </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="trainerDepartment"
+                      placeholder="Departnment"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-1">
+                  <div class="form-floating mb-3">
+                    <label for="">Code</label>
+                    <select
+                      name="trainerPhoneCode"
+                      id="cars"
+                      class="prefix form-control form-control-lg"
+                      formControlName="trainerPhoneCode"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px"
+                      [value]="obj.training[0].trainerPhoneCode"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.training[0].trainerPhoneCode"
+                      >
+                        {{ obj.training[0].trainerPhoneCode }}
+                      </option>
+                      <option
+                        *ngFor="let Country of Countries"
+                        [value]="Country.phonecode"
+                      >
+                        {{ Country.phonecode }} {{ Country.name }}
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-floating mb-3 firstName">
+                    <label for="floatingTextInput1">Phone Number</label>
+                    <input
+                      type="tel"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="trainerPhoneNo"
+                      placeholder="Number"
+                    />
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Trainer Feedback </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="trainerFeedback"
+                      placeholder="Trainer Feedback"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div *ngIf="step == 9">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Jobs Details
+                  </h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Job Post & Designation
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="jobPostDesignation"
+                      placeholder="Designation"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Department </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="jobdepartment"
+                      placeholder="Department"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Provided Email Id</label>
+                    <select
+                      name="companyEmailIdProvided"
+                      id="cars"
+                      formControlName="companyEmailIdProvided"
+                      (change)="onSelect($event)"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      [value]="obj.jobDetails[0].companyEmailIdProvided"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].companyEmailIdProvided"
+                      >
+                        {{ obj.jobDetails[0].companyEmailIdProvided }}
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Company Email Id </label>
+                    <input
+                      type="email"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="companyEmailId"
+                      placeholder="Company Email Id "
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Jobs Levels</label>
+                    <select
+                      name="jobLevel"
+                      id="cars"
+                      formControlName="jobLevel"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      [value]="obj.jobDetails[0].jobLevel"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].jobLevel"
+                      >
+                        {{ obj.jobDetails[0].jobLevel }}
+                      </option>
+                      <option value="Level One">Level One .</option>
+                      <option value="Level Two">Level Two</option>
+                      <option value="Level Three">Level Three</option>
+                      <option value="Level Four">Level Four</option>
+                      <option value="Level Fifth">Level Fifth</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Posted Location </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="postedLocation"
+                      placeholder="Posted Location"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <h4 class="card-title mb-3 text-primary text-uppercase">
+                  Job Scale
+                </h4>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Basic </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="basicAllowance"
+                      placeholder="Basic"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Allowance
+                  </h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="houseRentAllowance"
+                        value="Yes"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        House Rent
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> House Rent Amount </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="houseRentAmount"
+                      placeholder="House Rent Amount "
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="foodAllowance"
+                        value="Yes"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Food Allowance
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Food Allowance Amount
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="foodAllowanceAmount"
+                      placeholder="Food Allowance Amount"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="vehicleAllowance"
+                        value="Yes"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Vehicle Allowance
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Vehicle Allowance Amount</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="vehicleAllowanceAmount"
+                      placeholder="Vehicle Allowance Amount"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="uniformAllowance"
+                        value="Yes"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Uniform Allowance
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Uniform Allowance Amount
+                    </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="uniformAllowanceAmount"
+                      placeholder="Uniform Allowance Amount"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="travellingAllowances"
+                        value="Yes"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Travelling Allowance
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- <div class="form-check">
+                                <input class="form-check-input form-control " formControlName="travellingAllowances"
+                                    type="checkbox" [value]="'Yes'" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Travelling Allowance
+                                </label>
+                            </div> -->
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Travelling Allowance Amount</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="travellingAllowancesAmount"
+                      placeholder="Travelling Allowance Amount"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="educationalAllowance"
+                        value="Yes"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Education Allowance
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- <div class="form-check">
+                                <input class="form-check-input form-control " formControlName="educationalAllowance"
+                                    type="checkbox" [value]="'Yes'" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Education Allowance
+                                </label>
+                            </div> -->
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Education Allowance Amount</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="educationalAllowanceAmount"
+                      placeholder="Education Allowance Amount"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        formControlName="otherAllowance"
+                        value="Yes"
+                        id="flexCheckDefault"
+                      />
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Other Allowance
+                      </label>
+                    </div>
+                  </div>
+
+                  <!-- <div class="form-check">
+                                <input class="form-check-input form-control " formControlName="otherAllowance"
+                                    type="checkbox" [value]="'Yes'" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                    Other Allowance
+                                </label>
+                            </div> -->
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Other Allowance Amount</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="otherAllowanceAmount"
+                      placeholder="Other Allowance Amount"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+            </div>
+            <div *ngIf="step == 10">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Perquisites
+                  </h4>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Vehicle Issued</label>
+                    <select
+                      name="vehicle"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="vehicle"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].vehicle"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].vehicle"
+                      >
+                        {{ obj.jobDetails[0].vehicle }}
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">Vehicle Number </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="vehicleNumber"
+                      placeholder="Vehicle Number"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Model Name</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="vehicleModelName"
+                      placeholder="Model Name"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Model Year</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="vehicleModelYear"
+                      placeholder="Model Year"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Vehicle type</label>
+                    <select
+                      name="isVehicleNewOrPreowned"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="isVehicleNewOrPreowned"
+                      [value]="obj.jobDetails[0].isVehicleNewOrPreowned"
+                      style="padding-top: 12px"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].isVehicleNewOrPreowned"
+                      >
+                        {{ obj.jobDetails[0].isVehicleNewOrPreowned }}
+                      </option>
+                      <option value="Old">Old.</option>
+                      <option value="New">New.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Vehicle Fuel</label>
+                    <select
+                      name="vehicleFuelCashFacility"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="vehicleFuelCashFacility"
+                      [value]="obj.jobDetails[0].cashOrChipFacility"
+                      style="padding-top: 12px"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].cashOrChipFacility"
+                      >
+                        {{ obj.jobDetails[0].cashOrChipFacility }}
+                      </option>
+                      <option value="Cash">Cash.</option>
+                      <option value="Chip">Chip.</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Chips Details</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="vehicleFuelChipFacility"
+                      placeholder="Chips Details"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+              </div>
+              <div class="row">
+                <!-- <h4 class="card-title mb-3 text-primary text-uppercase">Accommodation</h4> -->
+
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Accommodation Issued</label>
+                    <select
+                      name="accommodationYesOrNo"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="accommodationYesOrNo"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].accommodationYesOrNo"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].accommodationYesOrNo"
+                      >
+                        {{ obj.jobDetails[0].accommodationYesOrNo }}
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Type Of Accomandation</label>
+                    <select
+                      name="isShredOrSeparate"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="isShredOrSeparate"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].isShredOrSeparate"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].isShredOrSeparate"
+                      >
+                        {{ obj.jobDetails[0].isShredOrSeparate }}
+                      </option>
+                      <option value="Shared">Shared.</option>
+                      <option value="Separate">Separate.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Type Of Shared</label>
+                    <select
+                      name="isExeutiveOrLabourFacility"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="isExeutiveOrLabourFacility"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].isExeutiveOrLabourFacility"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].isExeutiveOrLabourFacility"
+                      >
+                        {{ obj.jobDetails[0].isExeutiveOrLabourFacility }}
+                      </option>
+                      <option value="Executive">Executive.</option>
+                      <option value="Labour">Labour.</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Electricity Allocation</label>
+                    <select
+                      name="electricityAllocationYesOrNo"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="electricityAllocationYesOrNo"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].electricityAllocationYesOrNo"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].electricityAllocationYesOrNo"
+                      >
+                        {{ obj.jobDetails[0].electricityAllocationYesOrNo }}
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1">
+                      Electricity Allocation Amount</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="electricityAllocationAmount"
+                      placeholder="Electricity Allocation Amount"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Rent Allocation</label>
+                    <select
+                      name="rentAllocationYesOrNo"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="rentAllocationYesOrNo"
+                      [value]="obj.jobDetails[0].rentAllocationYesOrNo"
+                      style="padding-top: 12px"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].rentAllocationYesOrNo"
+                      >
+                        {{ obj.jobDetails[0].rentAllocationYesOrNo }}
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Rent Allocation Amount</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="rentAllocationAmount"
+                      placeholder="Rent Allocation Amount"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Mobile Issued</label>
+                    <select
+                      name="mobileIssuedOrNot"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="mobileIssuedOrNot"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].mobileIssuedOrNot"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].mobileIssuedOrNot"
+                      >
+                        {{ obj.jobDetails[0].mobileIssuedOrNot }}
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Sim Issued</label>
+                    <select
+                      name="simIssuedOrNot"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="simIssuedOrNot"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].simIssuedOrNot"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].simIssuedOrNot"
+                      >
+                        {{ obj.jobDetails[0].simIssuedOrNot }}
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Flight Facilities</label>
+                    <select
+                      name="flightFacilities"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="flightFacilities"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].flightFacilities"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].flightFacilities"
+                      >
+                        {{ obj.jobDetails[0].flightFacilities }}
+                      </option>
+                      <option value="Yes">Yes.</option>
+                      <option value="No">No.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Flight Facilities Period</label>
+                    <select
+                      name="howMuchTime"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="howMuchTime"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].howMuchTime"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].howMuchTime"
+                      >
+                        {{ obj.jobDetails[0].howMuchTime }}
+                      </option>
+                      <option value="Within Every 6 Month">
+                        Within Every 6 Month .
+                      </option>
+                      <option value="Once in a Year">Once in a Year.</option>
+                      <option value="Once in 2 Year">Once in 2 Year.</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Family Tickets</label>
+                    <select
+                      name="familyTicketsAlsoProvidedOrNot"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="familyTicketsAlsoProvidedOrNot"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].familyTicketsAlsoProvidedOrNot"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="
+                          obj.jobDetails[0].familyTicketsAlsoProvidedOrNot
+                        "
+                      >
+                        {{ obj.jobDetails[0].familyTicketsAlsoProvidedOrNot }}
+                      </option>
+                      <option value="Yes">Yes .</option>
+                      <option value="No">No.</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Others</label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="othersAccomandation"
+                      placeholder="Others"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+              </div>
+            </div>
+            <div *ngIf="step == 11">
+              <div class="row">
+                <div class="col-md-12">
+                  <h4 class="card-title mb-3 text-primary text-uppercase">
+                    Health Insurance
+                  </h4>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for=""> Health Insurance Coverage</label>
+                    <select
+                      name="healthInsuranceCoverage"
+                      id=" "
+                      class="form-control form-control-lg"
+                      (change)="onSelect($event)"
+                      id="floatingTextInput1"
+                      formControlName="healthInsuranceCoverage"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].healthInsuranceCoverage"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].healthInsuranceCoverage"
+                      >
+                        {{ obj.jobDetails[0].healthInsuranceCoverage }}
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-4">
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="
+                      getPostFormControls['healthInsuranceCoverage'].value ==
+                      'Yes'
+                    "
+                  >
+                    <label for="floatingTextInput1">
+                      Health Insurance Amount</label
+                    >
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="maximumAmountGiven"
+                      placeholder="Health Insurance Amount"
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="
+                      getPostFormControls['healthInsuranceCoverage'].value ==
+                      'Yes'
+                    "
+                  >
+                    <label for="">Family Health Insurance</label>
+                    <select
+                      name="familyHealthInsuranceGivenOrNot"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      (change)="onSelect($event)"
+                      id="floatingTextInput1"
+                      formControlName="familyHealthInsuranceGivenOrNot"
+                      style="padding-top: 12px"
+                      [value]="
+                        obj.jobDetails[0].familyHealthInsuranceGivenOrNot
+                      "
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="
+                          obj.jobDetails[0].familyHealthInsuranceGivenOrNot
+                        "
+                      >
+                        {{ obj.jobDetails[0].familyHealthInsuranceGivenOrNot }}
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div
+                    class="form-floating mb-3"
+                    *ngIf="
+                      getPostFormControls['healthInsuranceCoverage'].value ==
+                      'Yes'
+                    "
+                  >
+                    <label for="">Type Family Health Insurance</label>
+                    <select
+                      name="familyHealthInsuranceType"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="familyHealthInsuranceType"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].familyHealthInsuranceType"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].familyHealthInsuranceType"
+                      >
+                        {{ obj.jobDetails[0].familyHealthInsuranceType }} Health
+                        Insurance
+                      </option>
+                      <option value="only for spouse and children s">
+                        ONLY FOR SPOUSE AND CHILDREN .
+                      </option>
+                      <option value="FOR SPOUSE,CHILDREN AND PARENTS">
+                        FOR SPOUSE,CHILDREN AND PARENTS.
+                      </option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+                <div class="col-md-4"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Joining Date </label>
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      formControlName="joiningDate"
+                      placeholder="Joining Date "
+                    />
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Punching Machine</label>
+                    <select
+                      name="punchingMachineYesOrNo"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      id="floatingTextInput1"
+                      aria-placeholder=""
+                      formControlName="punchingMachineYesOrNo"
+                      style="padding-top: 12px"
+                      [value]="obj.jobDetails[0].punchingMachineYesOrNo"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].punchingMachineYesOrNo"
+                      >
+                        {{ obj.jobDetails[0].punchingMachineYesOrNo }}
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="">Refered By </label>
+                    <select
+                      name="ReferedBy"
+                      id="cars"
+                      class="form-control form-control-lg"
+                      formControlName="ReferedBy"
+                      (change)="onSelect($event)"
+                      id="floatingTextInput1"
+                      style="padding-top: 12px; padding-left: 8px"
+                      [value]="obj.jobDetails[0].referredBy"
+                    >
+                      <option
+                        selected
+                        disabled
+                        [value]="obj.jobDetails[0].referredBy"
+                      >
+                        {{ obj.jobDetails[0].referredBy }}
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-floating mb-3">
+                    <label for="floatingTextInput1"> Reference Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="floatingTextInput1"
+                      formControlName="ReferenceName"
+                      placeholder="Reference Name"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mt-5">
+              <div class="col-md-4" *ngIf="step != 1">
+                <button
+                  type="button"
+                  class="btn btn-lg w-75 h-100 text-light pbtn"
+                  (click)="previous()"
+                >
+                  <h3>Previous</h3>
+                </button>
+              </div>
+              <div class="col-md-4 next" *ngIf="step != 11">
+                <button
+                  type="button"
+                  class="btn btn-lg w-75 h-100 text-light pbtn"
+                  (click)="next()"
+                >
+                  <h3>Next</h3>
+                </button>
+              </div>
+              <div class="col-md-4 submit" *ngIf="step == 11">
+                <div class="form-floating mb-3">
+                  <button
+                    type="submit"
+                    class="btn btn-lg w-75 h-100 text-light pbtn"
+                  >
+                    <h3>Submit</h3>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
